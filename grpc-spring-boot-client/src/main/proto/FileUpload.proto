@@ -1,0 +1,38 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "net.devh.boot.grpc.examples.lib";
+option java_outer_classname = "FileUploadProto";
+
+
+service FileService {
+  rpc FileUpload ( stream FileUploadRequest ) returns ( FileUploadReply ) {}
+}
+
+enum Status {
+  PENDING = 0;
+  IN_PROGRESS = 1;
+  SUCCESS = 2;
+  FAILED = 3;
+}
+
+message FileUploadRequest {
+  oneof request {
+    MetaData metadata = 1;
+    File file = 2;
+  }
+}
+
+message File {
+  bytes content = 1;
+}
+
+message MetaData {
+  string name = 1;
+  string type = 2;
+}
+
+message FileUploadReply {
+  string name = 1;
+  Status status = 2;
+}
+

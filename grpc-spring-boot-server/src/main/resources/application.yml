@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: cloud-grpc-server
+  sleuth:
+    sampler:
+      probability: 1
+
+#grpc:
+#  server:
+#    port: 6565
+#  client:
+#    local-grpc-server-two:
+#      address: 'static://127.0.0.1:6666'
+#      enableKeepAlive: true
+#      keepAliveWithoutCalls: true
+#      negotiationType: plaintext
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+grpc:
+  server:
+    port: 6666
+  client:
+    cloud-grpc-client:
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext
+
+
+

@@ -1,0 +1,25 @@
+server:
+  port:
+    8083
+
+spring:
+  application:
+    name: api-gateway-service
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+
+zuul:
+  routes:
+    cloud-grpc-client:
+      path: /file/**
+      service-id: cloud-grpc-client
+    cloud-grpc-server:
+      path: /greeter/**
+      service-id: cloud-grpc-server
